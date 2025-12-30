@@ -1,0 +1,23 @@
+dict1={}
+
+with open("Student Details.txt","w")as f:
+    n=int(input("Enter the number of students:"))
+    if n>0:
+        for i in range (n):
+            name=input("Enter the student\'s name:")
+            score=float(input("Enter the score:"))
+            if 0<=score<=100:
+                if name.strip():
+                    f.writelines((f"{i+1}.{name}-{score}"))
+                    f.write("\n")
+                    dict1[name]=score
+    else:
+        raise ValueError()
+    
+with open("Student Details.txt","r")as f:
+    a=f.readlines()
+
+print(''.join(a).rstrip('\n'))
+
+max_key = max(dict1, key=dict1.get)
+print(max(dict1.values()),"is the highest mark scored by the student",max_key)
