@@ -19,8 +19,8 @@ else:
         j=input("Enter subject code:")
         j=j.upper()
         dict1[j]=len(dict1)+i
-sub_c=dict(dict1)
-list2=list(dict1)
+sub_c=list(dict1)
+
 class student:
     
     def name(self):
@@ -29,19 +29,18 @@ class student:
     
     def age(self):
         age=float(input("Enter age:"))
-        if 0<age<300:
-            pass 
-        else:
-            raise ValueError()
-        return (f"{age}yrs")
+        while (age<10 or age>119):
+            print("INPUT ERROR RE-ENTER THE INPUT")
+            age=float(input("Enter age:"))
+        return (f"{age}yrs")     
     
     def grade(self):
         grade=input("Enter grade[A,B,C,D,F]:")
         grade=grade.upper()
-        if grade in ["A","B","C","D","F"] :
-            pass
-        else:
-            raise ValueError()
+        while grade not in ["A","B","C","D","F"]:
+            print("INPUT ERROR RE-ENTER THE INPUT")
+            grade=input("Enter grade[A,B,C,D,F]:")
+        grade=grade.upper()
         return (f"Grade:{grade}")
     
     def reg_no(self):
@@ -50,24 +49,38 @@ class student:
     
     def sem_no(self):
         sem=int(input("Enter semested(number):"))
-        if 0<sem<13:
-            pass
-        else:
-            raise ValueError()  
+        while sem<1 or sem>12:
+            print("INPUT ERROR RE-ENTER THE INPUT")
+            sem=int(input("Enter semested(number):"))
         return (f"Semester:{sem}")
                                 
     def sub_code(self):
         sub=input("Enter subject code(enter the associate number given):")
         sub=sub.upper()
-        for i in range (len(sub_c)):
-            if sub not in list2:
-                pass 
-            elif sub in list2:
-                return (f"Sub_code:{sub}")
+        while sub not in sub_c:
+            print("INPUT ERROR RE-ENTER THE INPUT")
+            sub=input("Enter subject code(enter the associate number given):")
+            sub=sub.upper()
+        return (f"Sub_code:{sub}")
 
 print(clg.upper())
-print(list2)
-for i in range(n*sub_n):
+print(sub_c)
+for i in range(n):
     s=student()
-    list1.append(((s.name(),s.age(),s.grade(),s.reg_no(),s.sem_no(),s.sub_code())))
-print(list1)
+    name=s.name()
+    age=s.age()
+    reg_no=s.reg_no()
+    for j in range(sub_n):
+        sem_no=s.sem_no()
+        sub_code=s.sub_code()
+        grade=s.grade()
+        list1.append((name,age,reg_no,(sem_no,sub_code,grade)))
+#displaying the results 
+
+print('''The format of display is 
+Student name,age,reg_no,(semmester number,subject code,grade)
+''')
+print("********************RESULTS********************")
+print("\n")
+for i in list1:
+    print(i)
